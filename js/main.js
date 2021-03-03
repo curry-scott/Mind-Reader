@@ -17,25 +17,27 @@ function state1() {
 function state2() {
     text.innerHTML = 'Pick a number from 01-99';
    
-    click.innerHTML = 'NEXT';
+    click.innerHTML = 'Next';
     inst.innerHTML = 'When you have your number, click next';
-    addResetIcon();
+    addHomeIcon();
 }
 
 function state3() {
     text.innerHTML = 'Add both digits together to get a new number';
   
-    click.innerHTML = 'NEXT';
+    click.innerHTML = 'Next';
     inst.innerHTML = 'Ex: 14 is 1 + 4 = 5<br>Click next to proceed';
-    addResetIcon();
+    addHomeIcon();
+
 }
 
 function state4() {
     text.innerHTML = 'Subtract your new number from your old number';
  
-    click.innerHTML = 'NEXT';
+    click.innerHTML = 'Next';
     inst.innerHTML = 'Ex: 14 - 5 = 9 <br> Click next to proceed';
-    addResetIcon();
+    addHomeIcon();
+
 }
 
 function state5() {
@@ -43,13 +45,15 @@ function state5() {
     finalAns = text.textContent.slice(9, 10); // Gets the final symbol answer
                click.innerHTML = 'Reveal';
     inst.innerHTML = 'Find your new number' <br> 'Note the symbol beside the number';
-    addResetIcon();
+    addHomeIcon();
+
 }
 
 function state6() {
     text.innerHTML = finalAns;
    inst.innerHTML = `Your symbol is: <br> ${finalAns}`;
-    addResetIcon();
+   addHomeIcon();
+
 }
 
 let finalAns; // The final string output
@@ -59,10 +63,10 @@ function clickNext() {
     checkState(state);
 }
 
-function clickReset() {
+function clickHome() {
     if (btn.getAttribute('class') === 'go') {
         state = 2;
-        btn.setAttribute('class', 'reset');
+        btn.setAttribute('class', 'home');
         checkState(state);
     } else {
         state = 1;
@@ -71,8 +75,8 @@ function clickReset() {
     }
 }
 
-function addResetIcon() {
-    btn.innerHTML = ' <img src="img/undo-solid.svg" alt="reset">';
+function addHomeIcon() {
+    btn.innerHTML = ' <img src="img/undo-solid.svg" alt="home">';
     btn.setAttribute('style', 'padding: 20px;');
 }
 
@@ -93,19 +97,19 @@ function symbols(x) {
 }
 
 function checkState(stateNum) {
-    if (stateNum === 1) {
+    if (stateNum == 1) {
         state1();
     }
-    else if (stateNum === 2) {
+    else if (stateNum == 2) {
         state2();
     }
-    else if (stateNum === 3) {
+    else if (stateNum == 3) {
         state3();
     }
-    else if (stateNum === 4) {
+    else if (stateNum == 4) {
         state4();
     }
-    else if (stateNum === 5) {
+    else if (stateNum == 5) {
         state5();
     }
     else {
@@ -114,4 +118,4 @@ function checkState(stateNum) {
 }
 
 click.addEventListener('click', clickNext);
-btn.addEventListener('click', clickReset);
+btn.addEventListener('click', clickHome);
