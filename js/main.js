@@ -9,7 +9,7 @@ let state = 1;//start
 let finalAns;//the final string output
  
 //states or pages
-function state1() {
+function state0() {
     text.innerHTML = 'I can read your mind';
     click.innerHTML= '';
     subtext.innerHTML = '';
@@ -17,7 +17,7 @@ function state1() {
    
 }
  
-function state2() {
+function state1() {
     text.innerHTML = 'Pick a number from 01-99';
     click.innerHTML = 'Next';
     subtext.innerHTML = 'When you have your number click next';
@@ -25,7 +25,7 @@ function state2() {
     addResetIcon();
 }
  
-function state3() {
+function state2() {
     text.innerHTML = 'Add both digits together to get a new number';
     click.innerHTML = 'Next';
     subtext.innerHTML = 'Ex: 14 is 1+4=5<br>Click next to proceed';
@@ -33,7 +33,7 @@ function state3() {
     addResetIcon();
 }
  
-function state4() {
+function state3() {
     text.innerHTML = 'Subtract your new number from your old number';
     click.innerHTML = 'Next';
     subtext.innerHTML = 'Ex: 14-5=9<br>Click next to proceed';
@@ -41,7 +41,7 @@ function state4() {
     addResetIcon();
 }
  
-function state5() {
+function state4() {
     text.innerHTML = symbols(100);
     finalAns = text.textContent.slice(49, 50);
     click.innerHTML = 'Reveal';
@@ -50,7 +50,7 @@ function state5() {
     addResetIcon();
 }
  
-function state6() {
+function state5() {
     text.innerHTML = finalAns;
     click.innerHTML = '';
     subtext.innerHTML = `Your symbol is: ${finalAns}`;
@@ -69,7 +69,7 @@ function clickReset() {
       
         checkState(state);
     } else {
-        state = 1;
+        state = 0;
       
         checkState(state);
     }
