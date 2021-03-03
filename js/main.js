@@ -13,7 +13,7 @@ function state1() {
     text.innerHTML = 'I can read your mind';
     click.innerHTML= '';
     subtext.innerHTML = '';
-    btn.innerHTML = 'GO';
+    btn.innerHTML = 'Go';
    
 }
  
@@ -35,7 +35,7 @@ function state3() {
  
 function state4() {
     text.innerHTML = 'Subtract your new number from your old number';
-    click.innerHTML = 'NEXT';
+    click.innerHTML = 'Next';
     subtext.innerHTML = 'Ex: 14-5=9<br>Click next to proceed';
      btn.innerHTML = '';
     addResetIcon();
@@ -44,17 +44,17 @@ function state4() {
 function state5() {
     text.innerHTML = symbols(100);
     finalAns = text.textContent.slice(49, 50);
-  
     click.innerHTML = 'Reveal';
     subtext.innerHTML = 'Find your new number<br>Note the symbol beside the nyumber';
-     btn.innerHTML = '';
+    btn.innerHTML = '';
     addResetIcon();
 }
  
 function state6() {
     text.innerHTML = finalAns;
+    click.innerHTML = '';
     subtext.innerHTML = `Your symbol is: ${finalAns}`;
-     btn.innerHTML = '';
+    btn.innerHTML = '';
     addResetIcon();
 }
  
@@ -64,8 +64,8 @@ function clickNext() {
 }
  
 function clickReset() {
-    if (btn.getAttribute('class') === 'go') {
-        state = 2;
+    if (btn.getAttribute('class') === 'start') {
+        state = 1;
       
         checkState(state);
     } else {
@@ -76,7 +76,7 @@ function clickReset() {
 }
  
 function addResetIcon() {
-    btn.innerHTML = 'Home';
+    btn.innerHTML = 'Reset';
    
 }
  
