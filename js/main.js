@@ -1,71 +1,71 @@
 
-let text = document.querySelector('.text');
+let text = document.querySelector(".text");
 let click = document.querySelector('.click');
-let inst = document.querySelector('.inst');
-let btn = document.querySelector('.go');
+let subtext = document.querySelector('.subtext');
+let btn = document.querySelector('.home');
 
 let state = 1;
 
-
 function state1() {
     text.innerHTML = 'I can read your mind';
-    inst.innerHTML = '';
-    btn.innerHTML = 'Go';
- 
+    click.innerHTML = 'Next';
+    subtext.innerHTML = '';
+    btn.innerHTML = '';
+
 }
 
 function state2() {
     text.innerHTML = 'Pick a number from 01-99';
-   
     click.innerHTML = 'Next';
-    inst.innerHTML = 'When you have your number, click next';
+    subtext.innerHTML = 'When you have your number, click next';
+    btn.innerHTML = '';
     addHomeIcon();
+
 }
 
 function state3() {
     text.innerHTML = 'Add both digits together to get a new number';
-  
     click.innerHTML = 'Next';
-    inst.innerHTML = 'Ex: 14 is 1 + 4 = 5<br>Click next to proceed';
+    subtext.innerHTML = 'Ex: 14 is 1 + 4 = 5<br>Click next to proceed';
+    btn.innerHTML = '';
     addHomeIcon();
-
 }
 
 function state4() {
     text.innerHTML = 'Subtract your new number from your old number';
- 
     click.innerHTML = 'Next';
-    inst.innerHTML = 'Ex: 14 - 5 = 9 <br> Click next to proceed';
+    subtext.innerHTML = 'Ex: 14 - 5 = 9 <br> Click next to proceed';
+    btn.innerHTML = '';
     addHomeIcon();
-
 }
 
 function state5() {
-    text.innerHTML = symbols(9);
-    finalAns = text.textContent.slice(9, 10); // Gets the final symbol answer
-               click.innerHTML = 'Reveal';
-    inst.innerHTML = 'Find your new number' <br> 'Note the symbol beside the number';
+    text.innerHTML = symbols(10);
+    finalAns = text.textContent.slice(9); // Gets the final symbol answer
+    click.innerHTML = 'Reveal';
+    subtext.innerHTML = 'Find your new number <br> Note the symbol beside the number';
+    btn.innerHTML = '';
     addHomeIcon();
-
 }
 
 function state6() {
-    text.innerHTML = finalAns;
-   inst.innerHTML = `Your symbol is: <br> ${finalAns}`;
-   addHomeIcon();
-
+    text.innerHTML = '';
+    click.innerHTML = '';
+    subtext.innerHTML = `Your symbol is: <br> ${finalAns}`;
+    btn.innerHTML = '';
+    addHomeIcon();
 }
 
 let finalAns; // The final string output
 
 function clickNext() {
-    state ++;
+    state++;
     checkState(state);
 }
 
 function clickHome() {
-    if (btn.getAttribute('class') === 'go') {
-        state = 2;
+    if (btn.getAttribute('class') == 'go') {
+        state = 1;
         btn.setAttribute('class', 'home');
         checkState(state);
     } else {
@@ -77,17 +77,17 @@ function clickHome() {
 
 function addHomeIcon() {
     btn.innerHTML = ' <img src="img/undo-solid.svg" alt="home">';
-    btn.setAttribute('style', 'padding: 20px;');
+
 }
 
 function symbols(x) {
     let output = '';
     let sym = [];
-    let symChar = ['!', '@', '#', '$', '%', '^', '&', '*', '='];
+    let symChar = ['!', '@', '#', '$', '%', '^', '&', '*', '=', '+'];
     for (i = 0; i < 9; i++) {
         let rand = (Math.floor(Math.random() * (9 - (9 - symChar.length)))); // rand num 0 - length of array
         sym.push(symChar[rand]) // push into array
-        symChar.splice(rand, 1); // delete that symbol from array
+        symChar.splice(rand, 0); // delete that symbol from array
     }
     for (i = 0; i < x; i++) {
         let num = i;
