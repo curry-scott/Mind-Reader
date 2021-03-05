@@ -1,124 +1,127 @@
 
  
-let text = document.querySelector('.text');//larger text to read
+ 
+let text = document.querySelector('.text');
 let click = document.querySelector('.click');
-let subtext = document.querySelector('.subtext');//smaller text
-let btn = document.querySelector('.btn');
+let inst = document.querySelector('.inst');
+let btn = document.querySelector('.go');
  
-let state = 1;//start
-let finalAns;//the final string output
+let page = 1;
+let finalAns; 
+
+function symbols(x) {
+    let output = '';
+    let sym = [];
+    let symChar = ['=', '@', '*', '$', '%', '^', '&', '+', '#'];
+    for (i = 0; i < 9; i++) {
+        let rand = (Math.floor(Math.random() * (9 - (9 - symChar.length)))); // rand num 0 - length of array
+        sym.push(symChar[rand]) // push into array
+        symChar.splice(rand, 1); // delete that symbol from array
+    }
+    for (i = 0; i < x; i++) {
+        let num = i;
+        output += `${num} - ${sym[(i) % 9]}<br>`; // subtract 1 because arrays count from 0
+    }
+    return output;
+}
  
-//states or pages
-function state0() {
+function page1() {
     text.innerHTML = 'I can read your mind';
-    click.innerHTML= '';
-    subtext.innerHTML = '';
+    click.setAttribute('style', 'visibility: hidden;');
+    inst.innerHTML = '';
     btn.innerHTML = 'Go';
-   
+  
 }
  
-function state1() {
+function page2() {
     text.innerHTML = 'Pick a number from 01-99';
+ 
+    click.setAttribute('style', 'visibility: visible;');
     click.innerHTML = 'Next';
-    subtext.innerHTML = 'When you have your number click next';
-    btn.innerHTML = '';
+    inst.innerHTML = 'When you have your number, click next';
     addResetIcon();
 }
  
-function state2() {
+function page3() {
     text.innerHTML = 'Add both digits together to get a new number';
+ 
+    click.setAttribute('style', 'visibility: visible;');
     click.innerHTML = 'Next';
-    subtext.innerHTML = 'Ex: 14 is 1+4=5<br>Click next to proceed';
-     btn.innerHTML = '';
+    inst.innerHTML = 'Ex: 14 is 1 + 4 = 5<br>Click next to proceed';
     addResetIcon();
 }
  
-function state3() {
+function page4() {
     text.innerHTML = 'Subtract your new number from your old number';
-    click.innerHTML = 'Next';
-    subtext.innerHTML = 'Ex: 14-5=9<br>Click next to proceed';
-     btn.innerHTML = '';
+  
+   
+    click.innerHTML = 'NEXT';
+    inst.innerHTML = 'Ex: 14 - 5 = 9 <br>Click next to proceed';
     addResetIcon();
 }
  
-function state4() {
+function page5() {
     text.innerHTML = symbols(100);
     finalAns = text.textContent.slice(49, 50);
+   
+   
     click.innerHTML = 'Reveal';
-    subtext.innerHTML = 'Find your new number<br>Note the symbol beside the nyumber';
-    btn.innerHTML = '';
+    inst.innerHTML = 'Scroll to find the result of the previous equation.<br>Note the symbol beside the result.';
     addResetIcon();
 }
  
-function state5() {
+function page6() {
     text.innerHTML = finalAns;
-    click.innerHTML = '';
-    subtext.innerHTML = `Your symbol is: ${finalAns}`;
-    btn.innerHTML = '';
+    click.setAttribute('style', 'visibility: hidden;');
+    inst.innerHTML = `Your symbol is: ${finalAns}`;
     addResetIcon();
 }
  
 function clickNext() {
-    state ++;
-    checkState(state);
+    page ++;
+    checkPage(page);
 }
  
 function clickReset() {
-    if (btn.getAttribute('class') === 'start') {
-        state = 1;
-      
-        checkState(state);
+    if (btn.getAttribute('class') === 'go') {
+        page = 2;
+        btn.setAttribute('class', 'reset');
+        checkPage(page);
     } else {
-        state = 0;
-      
-        checkState(state);
+        page = 1;
+        btn.setAttribute('class', 'go');
+        checkPage(page);
     }
 }
  
 function addResetIcon() {
     btn.innerHTML = 'Reset';
-   
+  
 }
  
-function symbols(x) {
-    let output = '';
-    let sym = [];
-    let symChar = ['=', '@', '*', '$', '%', '^', '&', '+', '#'];//array
-    for (i = 0; i < 9; i++) {
-        let rand = (Math.floor(Math.random() * (9 - (9 - symChar.length))));//rand num 0 - length of array
-        sym.push(symChar[rand])//push into array
-        symChar.splice(rand, 1);//delete that symbol from array
-    }
-    for (i = 0; i < x; i++) {
-        let num = i;
-        output += `${num} - ${sym[(i) % 9]}<br>`;//subtract 1 because arrays count from 0
-    }
-    return output;
-}
+
  
-//checking states
-function checkState(stateNum) {
-    if (stateNum == 1) {
-        state1();
+function checkPage(pageNum) {
+    if (pageNum == 1) {
+        page1();
     }
-    else if (stateNum == 2) {
-        state2();
+    else if (pageNum == 2) {
+        page2();
     }
-    else if (stateNum == 3) {
-        state3();
+    else if (pageNum == 3) {
+        page3();
     }
-    else if (stateNum == 4) {
-        state4();
+    else if (pageNum == 4) {
+        page4();
     }
-    else if (stateNum == 5) {
-        state5();
+    else if (pageNum == 5) {
+        page5();
     }
     else {
-        state6();
+        page6();
     }
 }
  
 click.addEventListener('click', clickNext);
 btn.addEventListener('click', clickReset);
- 
  
