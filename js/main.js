@@ -6,7 +6,7 @@ let click = document.querySelector('.click');
 let subtext = document.querySelector('.subtext');
 let btn = document.querySelector('.go');
 
-let page = 1;
+let state = 1;
 let finalAns;
 
 function symbols(x) {
@@ -25,7 +25,7 @@ function symbols(x) {
     return output;
 }
 
-function page1() {
+function state1() {
     text.innerHTML = 'I can read your mind';
     click.setAttribute('style', 'visibility: hidden;');
     subtext.innerHTML = '';
@@ -33,7 +33,7 @@ function page1() {
 
 }
 
-function page2() {
+function state2() {
     text.innerHTML = 'Pick a number from 01-99';
     click.setAttribute('style', 'visibility: visible;');
     click.innerHTML = 'Next';
@@ -41,7 +41,7 @@ function page2() {
     addResetIcon();
 }
 
-function page3() {
+function state3() {
     text.innerHTML = 'Add both digits together to get a new number';
 
     click.setAttribute('style', 'visibility: visible;');
@@ -50,7 +50,7 @@ function page3() {
     addResetIcon();
 }
 
-function page4() {
+function state4() {
     text.innerHTML = 'Subtract your new number from your old number';
 
 
@@ -59,7 +59,7 @@ function page4() {
     addResetIcon();
 }
 
-function page5() {
+function state5() {
     text.innerHTML = symbols(100);
     finalAns = text.textContent.slice(49, 50);
 
@@ -69,7 +69,7 @@ function page5() {
     addResetIcon();
 }
 
-function page6() {
+function state6() {
     text.innerHTML = finalAns;
     click.setAttribute('style', 'visibility: hidden;');
     subtext.innerHTML = `Your symbol is: ${finalAns}`;
@@ -77,19 +77,19 @@ function page6() {
 }
 
 function clickNext() {
-    page++;
-    checkPage(page);
+    state++;
+    checkPage(state);
 }
 
 function clickReset() {
     if (btn.getAttribute('class') === 'go') {
-        page = 2;
+        state = 2;
         btn.setAttribute('class', 'reset');
-        checkPage(page);
+        checkPage(state);
     } else {
-        page = 1;
+        state = 1;
         btn.setAttribute('class', 'go');
-        checkPage(page);
+        checkPage(state);
     }
 }
 
@@ -100,24 +100,24 @@ function addResetIcon() {
 
 
 
-function checkPage(pageNum) {
-    if (pageNum == 1) {
-        page1();
+function checkPage(stateNum) {
+    if (stateNum == 1) {
+        state1();
     }
-    else if (pageNum == 2) {
-        page2();
+    else if (stateNum == 2) {
+        state2();
     }
-    else if (pageNum == 3) {
-        page3();
+    else if (stateNum == 3) {
+        state3();
     }
-    else if (pageNum == 4) {
-        page4();
+    else if (stateNum == 4) {
+        state4();
     }
-    else if (pageNum == 5) {
-        page5();
+    else if (stateNum == 5) {
+        state5();
     }
     else {
-        page6();
+        state6();
     }
 }
 
