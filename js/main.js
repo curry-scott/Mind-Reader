@@ -1,20 +1,19 @@
-
-
-
+// declaring variables
 let text = document.querySelector('.text');
 let click = document.querySelector('.click');
 let subtext = document.querySelector('.subtext');
 let btn = document.querySelector('.go');
 
-let state = 1;
-let finalAns;
+let state = 1; // stating on state 1
+let finalAns; // string output for final
 
+// generating random symbol
 function symbols(x) {
     let output = '';
     let sym = [];
     let symChar = ['=', '@', '*', '$', '%', '^', '&', '+', '#'];
     for (i = 0; i < 9; i++) {
-        let rand = (Math.floor(Math.random() * (9 - (9 - symChar.length)))); // rand num 0 - length of array
+        let rand = (Math.floor(Math.random() * (9 - (9 - symChar.length)))); // rand num 0-1 - length of array
         sym.push(symChar[rand]) // push into array
         symChar.splice(rand, 1); // delete that symbol from array
     }
@@ -25,6 +24,7 @@ function symbols(x) {
     return output;
 }
 
+// states
 function state1() {
     text.innerHTML = 'I can read your mind';
     click.setAttribute('style', 'visibility: hidden;');
@@ -43,8 +43,6 @@ function state2() {
 
 function state3() {
     text.innerHTML = 'Add both digits together to get a new number';
-
-    click.setAttribute('style', 'visibility: visible;');
     click.innerHTML = 'Next';
     subtext.innerHTML = 'Ex: 14 is 1 + 4 = 5<br>Click next to proceed';
     addResetIcon();
@@ -52,9 +50,7 @@ function state3() {
 
 function state4() {
     text.innerHTML = 'Subtract your new number from your old number';
-
-
-    click.innerHTML = 'NEXT';
+    click.innerHTML = 'Next';
     subtext.innerHTML = 'Ex: 14 - 5 = 9 <br>Click next to proceed';
     addResetIcon();
 }
@@ -83,11 +79,11 @@ function clickNext() {
 
 function clickReset() {
     if (btn.getAttribute('class') === 'go') {
-        state = 2;
+        state = 1;
         btn.setAttribute('class', 'reset');
         checkPage(state);
     } else {
-        state = 1;
+        state = 2;
         btn.setAttribute('class', 'go');
         checkPage(state);
     }
