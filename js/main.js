@@ -1,13 +1,13 @@
 
- 
- 
+
+
 let text = document.querySelector('.text');
 let click = document.querySelector('.click');
-let inst = document.querySelector('.inst');
+let subtext = document.querySelector('.subtext');
 let btn = document.querySelector('.go');
- 
+
 let page = 1;
-let finalAns; 
+let finalAns;
 
 function symbols(x) {
     let output = '';
@@ -24,64 +24,63 @@ function symbols(x) {
     }
     return output;
 }
- 
+
 function page1() {
     text.innerHTML = 'I can read your mind';
     click.setAttribute('style', 'visibility: hidden;');
-    inst.innerHTML = '';
+    subtext.innerHTML = '';
     btn.innerHTML = 'Go';
-  
+
 }
- 
+
 function page2() {
     text.innerHTML = 'Pick a number from 01-99';
- 
     click.setAttribute('style', 'visibility: visible;');
     click.innerHTML = 'Next';
-    inst.innerHTML = 'When you have your number, click next';
+    subtext.innerHTML = 'When you have your number, click next';
     addResetIcon();
 }
- 
+
 function page3() {
     text.innerHTML = 'Add both digits together to get a new number';
- 
+
     click.setAttribute('style', 'visibility: visible;');
     click.innerHTML = 'Next';
-    inst.innerHTML = 'Ex: 14 is 1 + 4 = 5<br>Click next to proceed';
+    subtext.innerHTML = 'Ex: 14 is 1 + 4 = 5<br>Click next to proceed';
     addResetIcon();
 }
- 
+
 function page4() {
     text.innerHTML = 'Subtract your new number from your old number';
-  
-   
+
+
     click.innerHTML = 'NEXT';
-    inst.innerHTML = 'Ex: 14 - 5 = 9 <br>Click next to proceed';
+    subtext.innerHTML = 'Ex: 14 - 5 = 9 <br>Click next to proceed';
     addResetIcon();
 }
- 
+
 function page5() {
     text.innerHTML = symbols(100);
     finalAns = text.textContent.slice(49, 50);
-   
-   
+
+
     click.innerHTML = 'Reveal';
-    inst.innerHTML = 'Scroll to find the result of the previous equation.<br>Note the symbol beside the result.';
+    subtext.innerHTML = 'Scroll to find the result of the previous equation.<br>Note the symbol beside the result.';
     addResetIcon();
 }
- 
+
 function page6() {
     text.innerHTML = finalAns;
     click.setAttribute('style', 'visibility: hidden;');
-    inst.innerHTML = `Your symbol is: ${finalAns}`;
+    subtext.innerHTML = `Your symbol is: ${finalAns}`;
     addResetIcon();
 }
- 
+
 function clickNext() {
-    page ++;
+    page++;
     checkPage(page);
 }
- 
+
 function clickReset() {
     if (btn.getAttribute('class') === 'go') {
         page = 2;
@@ -93,14 +92,14 @@ function clickReset() {
         checkPage(page);
     }
 }
- 
+
 function addResetIcon() {
     btn.innerHTML = 'Reset';
-  
-}
- 
 
- 
+}
+
+
+
 function checkPage(pageNum) {
     if (pageNum == 1) {
         page1();
@@ -121,7 +120,6 @@ function checkPage(pageNum) {
         page6();
     }
 }
- 
+
 click.addEventListener('click', clickNext);
 btn.addEventListener('click', clickReset);
- 
